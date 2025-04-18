@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carniceria</title>
+    <link rel="stylesheet" href="css\style.css">
+</head>
+<body>
+    <header>
+        <img src="img\logo.png" alt="Logo de la Carniceria Carlitos" width="300" height="100">
+        <nav>
+            <ul>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="galeria.html">Galeria de imagenes</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="nosotros">
+            <h2>Sobre nosotros</h2>
+            <p>En Carnicería Carlitos nos dedicamos a ofrecer la mejor carne del hemisferio, seleccionada cuidadosamente para quienes valoran la excelencia en cada corte. Somos una carnicería premium con alma, donde la calidad, la atención personalizada y la pasión por lo que hacemos se sienten desde el primer momento.</p>
+            <p>Trabajamos con productores confiables que comparten nuestros estándares, asegurando frescura, sabor y una experiencia superior en cada visita. Ya sea que busques un corte tradicional o una pieza especial para un asado inolvidable, en Carlitos encontrás lo mejor de lo mejor.</p>
+            <p><b>Carnicería Carlitos. Calidad que se nota. Sabor que se recuerda.</b></p>
+        </section>
+
+        <iframe width="560" height="315" 
+          src="https://www.youtube.com/embed/XqA6SJpqiOk" 
+          title="YouTube video player" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen>
+        </iframe>
+
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <form>
+                <label for="nombre">Nombre:</label><br>
+                <input type="text" id="nombre" name="nombre"><br><br>
+
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="telefono">Numero de telefono:</label><br>
+                <input type="tel" id="telefono" name="telefono"><br><br>
+
+                <label for="asunto">Asunto:</label><br>
+                <select id="asunto" name="asunto">
+                    <option value="rc">Recomendacion</option>
+                    <option value="pe">Pedido</option>
+                    <option value="ot">Otro</option>
+                </select><br><br>
+
+                <label for="mensaje">Mensaje:</label><br>
+                <textarea id="mensaje" name="mensaje" rows="4" cols="50"></textarea><br><br>
+
+                <input type="checkbox" name="news" value="news">Desea recibir mails con descuentos<br><br>
+
+                <input type="submit" value="Enviar">
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>Podés encontrarnos o escribirnos usando los siguientes medios:</p>
+        <ul>
+            <li> Dirección: Calle Av. Maipú 2100, Buenos Aires Capital</li>
+            <li> Teléfono: 1234-5678</li>
+            <li> Email: contacto@carniceriacarlitos.com</li>
+        </ul>
+        <p>&copy; 2023 Carnicería Carlitos. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
