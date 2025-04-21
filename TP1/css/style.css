@@ -1,5 +1,7 @@
 body{
-    background-color: #e4ddd1; 
+    background-color: #e4ddd1;
+    padding: 0;
+    margin: 0;
 }
 
 h2{
@@ -89,25 +91,35 @@ iframe{
   }
 
 footer{
-    background-color: lightblue; 
+    background-color: lightblue;
+    padding: 0;
+    margin: 0;
 
 }
 footer p{
     text-align: center; 
     font-size: 0.75em; 
     margin-top: 20px; 
-    color: #4a4a4a; 
+    color: #4a4a4a;
 
 }
 footer ul {
     list-style: none; 
     padding: 10px;
-    justify-content: center; 
     background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
   }
 footer li {
     text-align: center;
     margin: 0 15px; 
     font-size: 0.75em;
-
+    display: flex;
+    align-items: center;
   }
+
+footer li img{
+  width: 20px;
+  height: auto;
+  margin-right: 10px;
+}
