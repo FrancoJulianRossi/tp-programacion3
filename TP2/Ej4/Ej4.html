@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio4</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <ul id="tareas">
+    </ul>
+    <input type="text" id="nuevaTarea" placeholder="Nueva tarea">
+    <button id="agregarTarea">Enviar</button>
+
+    <script>
+        const tareas = document.getElementById('tareas');
+        const nuevaTarea = document.getElementById('nuevaTarea');
+        const agregarTarea = document.getElementById('agregarTarea');
+
+        agregarTarea.addEventListener('click', (event) => {
+            event.preventDefault(); // Evita que el formulario se envíe
+
+            const tareaTexto = nuevaTarea.value;
+            if (tareaTexto) {
+            const li = document.createElement('li');
+            li.textContent = tareaTexto;
+            tareas.appendChild(li);
+            nuevaTarea.value = '';
+        }
+        });
+
+        tareas.addEventListener('click', (event) => {
+            if (event.target.tagName === 'LI') {
+                event.target.classList.toggle('completado');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <p class="parrafo">Ejercicio 3</p>
+    <p class="parrafo">Ejercicio 3</p>
+    <p class="parrafo">Ejercicio 3</p>
+
+    <button class="resaltar">Resaltar</button>
+    <button class="ocultar">Ocultar</button>
+    
+    <script>
+        const parrafos = document.querySelectorAll('.parrafo');
+        const resaltarBtn = document.querySelector('.resaltar');
+        const ocultarBtn = document.querySelector('.ocultar');
+
+        resaltarBtn.addEventListener('click', () => {
+            parrafos.forEach(parrafo => {
+                parrafo.classList.add('resaltado');
+            });
+        });
+
+        ocultarBtn.addEventListener('click', () => {
+            parrafos.forEach(parrafo => {
+                parrafo.classList.toggle('oculto');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>>
+</head>
+<body>
+    <h1 id="tituloPrincipal">Titulo principal</h1>
+
+    <p class="parrafo"> relleno </p>
+    <p class="parrafo"> relleno </p>
+
+    <div id="contenedor">
+        <ul>
+            <li class="item">Elemento 1</li>
+            <li class="item">Elemento 2</li>
+            <li class="item">Elemento 3</li>
+        </ul>
+    </div>
+    <script>
+        const miTitulo = document.getElementById("tituloPrincipal");
+        miTitulo.textContent = "Hola Mundo!"; 
+    
+        const misParrafos = document.getElementsByClassName("parrafo");
+        for (let i = 0; i < misParrafos.length; i++) {
+             misParrafos[i].style.color = "red";
+            }
+        const miLista = document.querySelectorAll(".item")
+        miLista.forEach((li, index) => {
+            li.textContent += " - Modificado por JS";
+        });
+    </script>
+</body>

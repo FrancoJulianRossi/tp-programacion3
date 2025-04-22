@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario con Validación</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Formulario de Registro</h1>
+  <form id="miFormulario">
+    <label>Nombre:
+      <input type="text" id="nombre" />
+      <div class="error" id="errorNombre"></div>
+    </label>
+
+    <label>Email:
+      <input type="email" id="email" />
+      <div class="error" id="errorEmail"></div>
+    </label>
+
+    <label>Edad:
+      <input type="number" id="edad" />
+      <div class="error" id="errorEdad"></div>
+    </label>
+
+    <button type="submit" id="enviar">Enviar</button>
+  </form>
+
+  <script>
+    const formulario = document.getElementById('miFormulario');
+
+    formulario.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const edad = parseInt(document.getElementById('edad').value);
+      const errorNombre = document.getElementById('errorNombre');
+      const errorEmail = document.getElementById('errorEmail');
+      const errorEdad = document.getElementById('errorEdad');
+
+      errorNombre.textContent = '';
+      errorEmail.textContent = '';
+      errorEdad.textContent = '';
+
+      let hayErrores = false;
+
+      if (nombre === '') {
+        errorNombre.textContent = 'Por favor ingresa tu nombre.';
+        hayErrores = true;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (email === '') {
+        errorEmail.textContent = 'El email es obligatorio.';
+        hayErrores = true;
+      } else if (!emailRegex.test(email)) {
+        errorEmail.textContent = 'El formato del email no es válido.';
+        hayErrores = true;
+      }
+
+      if (isNaN(edad)) {
+        errorEdad.textContent = 'La edad es obligatoria.';
+        hayErrores = true;
+      } else if (edad <= 18) {
+        errorEdad.textContent = 'Debes tener más de 18 años.';
+        hayErrores = true;
+      }
+
+      if (!hayErrores) {
+        alert('Formulario enviado con éxito!');
+        formulario.reset(); 
+      }
+    });
+  </script>
+
+</body>
+</html>

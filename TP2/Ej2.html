@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+ 
+    <button id="agregarElemento">Agregar Elemento</button>
+    <button id="eliminarElemento">Eliminar Elemento</button>
+    <input type="text" id="nuevoElemento" placeholder="Nuevo Elemento">
+    <ul id="miLista">
+
+    </ul>
+    <script>
+        const miLista = document.getElementById("miLista");
+        const agregarElementoBtn = document.getElementById("agregarElemento");
+        const nuevoElementoInput = document.getElementById("nuevoElemento");
+        const eliminarElementoBtn = document.getElementById("eliminarElemento");
+    
+        agregarElementoBtn.addEventListener("click", function() {
+            const nuevoElementoTexto = nuevoElementoInput.value;
+            if (nuevoElementoTexto) {
+                const nuevoLi = document.createElement("li");
+                nuevoLi.textContent = nuevoElementoTexto;
+                miLista.appendChild(nuevoLi);
+                nuevoElementoInput.value = ""; // Limpiar el input
+            } else {
+                alert("Por favor, ingresa un texto para el nuevo elemento.");
+            }
+        });
+
+        eliminarElementoBtn.addEventListener("click", function() {
+            const elementos = miLista.getElementsByTagName("li");
+            if (elementos.length > 0) {
+                miLista.removeChild(elementos[elementos.length - 1]); // Eliminar el último elemento
+            } else {
+                alert("No hay elementos para eliminar.");
+            }
+        });
+
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,7 @@
+.resaltado{
+    background-color: #ff0;
+    font-weight: bold;
+}
+.oculto{
+    display: none;
+}
