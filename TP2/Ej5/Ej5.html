@@ -29,9 +29,9 @@
   </form>
 
   <script>
-    const formulario = document.getElementById('miFormulario');
+    const enviarBtn = document.getElementById('enviar');
 
-    formulario.addEventListener('submit', function(event) {
+    enviarBtn.addEventListener('click', function(event) {
       event.preventDefault();
 
       const nombre = document.getElementById('nombre').value.trim();
@@ -71,7 +71,7 @@
 
       if (!hayErrores) {
         alert('Formulario enviado con éxito!');
-        formulario.reset(); 
+        enviarBtn.reset(); 
       }
     });
   </script>
