@@ -43,7 +43,7 @@ class Server {
   rutas () {
     this.app.use('/api/v1/pacientes', rutaPacientes)
     this.app.use('/',home)
- 
+    this.app.use('/api/v1/turnos', turnosRoutes);
     // aca van las otras rutas
 
   }
