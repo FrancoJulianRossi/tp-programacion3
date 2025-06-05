@@ -5,6 +5,7 @@ class Turno extends Identificador{
        super(id);
        this.idPaciente = idPaciente;
        this.fecha= fecha
+       
     }
 }
 module.exports = Turno; 

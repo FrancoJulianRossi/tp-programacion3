@@ -2,12 +2,13 @@ const  express = require('express');
 const  dotenv = require('dotenv');
 
 const rutaPacientes = require('./routes/pacientes.route.js')
+const turnosRutas = require('./routes/turnos.route.js');
 const home = require('./routes/home.routes.js');
 const morgan = require('morgan');
 dotenv.config()
 
 class Server {
-  constructor (template=process.env.TEMPLATE || 'ejs') {
+  constructor (template=process.env.TEMPLATE || 'pug') {
     this.app = express()
     this.port = process.env.PORT || 3001
     this.middleware()
@@ -43,7 +44,7 @@ class Server {
   rutas () {
     this.app.use('/api/v1/pacientes', rutaPacientes)
     this.app.use('/',home)
-    this.app.use('/api/v1/turnos', turnosRoutes);
+    this.app.use('/api/v1/turnos', turnosRutas);
     // aca van las otras rutas
 
   }

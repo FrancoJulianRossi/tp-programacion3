@@ -1,23 +1,18 @@
 doctype html
 html(lang="es")
-    head
-        title= title
-        meta(charset="utf-8")
-        link(rel="stylesheet", href="/css/style.css")
-    body
-        h1= message
-        h2 Estoy en PUG
-        p Bienvenido a nuestra aplicación
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title TP3
+  body
+    header
+      h1 Hospital
+    main
+      div.botones
+        button#registrar Registar paciente
+        button#verTurnos Ver Turnos
+        button#agregarTurno Agregar Turno
+        button#borrarTurno Borrar Turno
+        button#borrarPaciente Borrar Paciente
 
-        if showFeatures
-            h2 Características principales:
-            ul
-                each feature in features
-                    li= feature
-        else
-            p No hay características disponibles.
-            
-        //- Esto es un comentario (no se renderiza en el HTML)
-        
-        footer
-            p © #{new Date().getFullYear()} Mi Aplicación
+script(src="/botonesIndexScript.js") 
