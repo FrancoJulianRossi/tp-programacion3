@@ -4,7 +4,9 @@ const  dotenv = require('dotenv');
 const rutaPacientes = require('./routes/pacientes.route.js')
 const turnosRutas = require('./routes/turnos.route.js');
 const home = require('./routes/home.routes.js');
+const web = require('./routes/web.js');
 const morgan = require('morgan');
+
 dotenv.config()
 
 class Server {
@@ -36,7 +38,7 @@ class Server {
 
   }
   middleware () {
-    // this.app.use('/', express.static('public'))
+    this.app.use('/', express.static('public'))
     this.app.use(express.json())
     this.app.use(morgan('dev'))
   }
@@ -45,6 +47,7 @@ class Server {
     this.app.use('/api/v1/pacientes', rutaPacientes)
     this.app.use('/',home)
     this.app.use('/api/v1/turnos', turnosRutas);
+    this.app.use('/web', web);
     // aca van las otras rutas
 
   }
