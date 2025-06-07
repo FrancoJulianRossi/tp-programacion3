@@ -10,11 +10,7 @@ class PacientesController {
       const token = await pacientesModel.validate(email, password);
     
          res.status(200).json(token);
-   
-        
 
-
-     
     } catch (error) {
       res.status(401).json({ message: error.message });
     }

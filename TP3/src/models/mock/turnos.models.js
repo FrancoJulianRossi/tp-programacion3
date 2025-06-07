@@ -1,36 +1,25 @@
 const Turno = require("./../mock/entities/turno.entity.js");
-const Persona = require("./../mock/entities/paciente.entity.js");
-const Config = require("./../../config/config.js");
 
 class TurnosModel {
     constructor() {
         this.data = [];
-        const paciente =new Persona(
-        "123456787",
-        "Sergio",
-        "Antozzi",
-        "email@gmail.com",
-        "12345",
-        1
-      );
         this.data.push(
-            new Turno(1, paciente.id, "2023-10-01T10:00:00Z")
+            new Turno(1, 1, "2023-10-01T10:00:00Z", "disponible"),
         );
         this.id = 2;
     }
-    
     crearTurno(turno) {
         return new Promise((resolve, reject) => {
-        try {
-            turno.id = this.id++;
-            this.data.push(turno);
-            resolve(turno);
-        } catch (error) {
-            reject(error);
-        }
+            try {
+                turno.id = this.id++;
+                this.data.push(turno);
+                resolve(turno);
+            } catch (error) {
+                reject(error);
+            }
         });
     }
-    getTurnoByPacienteId({idPaciente}) {
+    getTurnoByPacienteId(idPaciente) {
         return new Promise((resolve, reject) => {
             try {
                 const turnos = this.data.filter(turno => turno.idPaciente === idPaciente);
@@ -43,19 +32,41 @@ class TurnosModel {
             }
         });
     }
-    deleteTurno(id) {
+    CancelarTurno(id) {
         return new Promise((resolve, reject) => {
-            try {
-                const turnoEncontrado = this.data.find(turno => turno.id === id);
-                if (!turnoEncontrado) {
-                    throw new Error("Turno no encontrado");
-                }
-                const pos = this.data.indexOf(turnoEncontrado);
-                this.data.splice(pos, 1);
-                resolve(turnoEncontrado);
-            } catch (error) {
-                reject(error);
+            const numeroId = parseInt(id, 10);
+            if (isNaN(numeroId)) {
+                return reject(new Error("El id no es un numero"));
             }
+            const turnoEncontrado = this.data.find((t) => t.id === numeroId);
+            if (!turnoEncontrado) {
+                return reject(new Error(`El id ${numeroId} no fue encontrado`));
+            }
+            if (turnoEncontrado.estado === "disponible") {
+                return reject(new Error(`El turno con id ${numeroId} está disponible`));
+            }
+            turnoEncontrado.estado = "disponible";
+            resolve({
+                message: "Turno cancelado exitosamente"
+            });
+        });
+    }
+    listarTurnos() {
+        return new Promise((resolve, reject) => {
+            resolve(this.data);
+        });
+    }
+    getTurnoById(id) {
+        return new Promise((resolve, reject) => {
+            const numeroId = parseInt(id, 10);
+            if (isNaN(numeroId)) {
+                return reject(new Error("El id no es un numero"));
+            }
+            const turnoEncontrado = this.data.find(t => t.id === numeroId);
+            if (!turnoEncontrado) {
+                return reject(new Error(`Turno con id ${numeroId} no encontrado`));
+            }
+            resolve(turnoEncontrado);
         });
     }
 }

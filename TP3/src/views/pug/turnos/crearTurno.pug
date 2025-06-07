@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+  form(action='/turnos/nuevo', method='post')
+    p
+      label(for='fecha') Fecha:
+      input(type='datetime-local', name='fecha', required)
+    p
+      label(for='estado') Estado:
+      select(name='estado', required)
+        option(value='disponible') disponible
+        option(value='reservado') reservado
+    p
+      label(for='pacienteId') Paciente:
+      select(name='pacienteId', required)
+        each paciente in pacientes
+          option(value=paciente.id)= `${paciente.nombre} ${paciente.apellido}`
+    p
+      button(type='submit') Crear turno

@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  a(href='/pacientes/nuevo') Crear nuevo paciente
+
+  if pacientes.length
+    table
+      thead
+        tr
+          th ID
+          th DNI
+          th Nombre
+          th Apellido
+          th Email
+          th Acciones
+      tbody
+        each paciente in pacientes
+          tr
+            td= paciente.id
+            td= paciente.dni
+            td= paciente.nombre
+            td= paciente.apellido
+            td= paciente.email
+            td
+              form(action=`/pacientes/${paciente.id}/eliminar`, method='post', style='display:inline')
+                button(type='submit') Eliminar
+              a(href=`/pacientes/${paciente.id}/editar`) Editar
+  else
+    p No hay pacientes registrados.

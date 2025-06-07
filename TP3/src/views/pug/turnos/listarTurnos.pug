@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+  a(href='/turnos/nuevo') Crear nuevo turno
+
+  if turnos.length
+    table
+      thead
+        tr
+          th ID
+          th Fecha
+          th Estado
+          th Paciente ID
+      tbody
+        each turno in turnos
+          tr
+            td= turno.id
+            td= turno.fecha
+            td= turno.estado
+            td= turno.idPaciente
+            td
+              form(action=`/turnos/${turno.id}/borrar`, method='post', style='display:inline')
+                button(type='submit') Borrar
+  else
+    p No hay turnos registrados.

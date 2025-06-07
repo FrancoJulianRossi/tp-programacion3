@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  form(action=`/pacientes/actualizar/${paciente.id}`, method='post')
+    p
+      label(for='dni') DNI:
+      input(type='text', name='dni', required, value=paciente.dni)
+    p
+      label(for='nombre') Nombre:
+      input(type='text', name='nombre', required, value=paciente.nombre)
+    p
+      label(for='apellido') Apellido:
+      input(type='text', name='apellido', required, value=paciente.apellido)
+    p
+      label(for='email') Email:
+      input(type='email', name='email', required, value=paciente.email)
+    p
+      button(type='submit') Actualizar paciente

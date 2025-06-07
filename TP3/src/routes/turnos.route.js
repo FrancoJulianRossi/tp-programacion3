@@ -5,5 +5,6 @@ const turnosController = require('../controllers/API/turnos.controller.js');
 router.get('/:idPaciente', turnosController.getTurnosId);
 router.delete('/:idTurno', turnosController.deleteTurno);
 router.post('/', turnosController.crearTurno);
+router.get('/', turnosController.listarTurnos);
 
 module.exports = router;
