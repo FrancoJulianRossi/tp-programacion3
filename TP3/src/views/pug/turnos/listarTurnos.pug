@@ -1,6 +1,79 @@
 extends ../index
 
 block content
+  style.
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background-color: rgba(253, 9, 9, 0.95);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #343a40;
+      color: white;
+    }
+
+    form {
+      display: inline;
+    }
+
+    button {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      margin-right: 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #c82333;
+    }
+
+    td a {
+      background-color: #007bff;
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 5px;
+    }
+
+    td a:hover {
+      background-color: #0056b3;
+    }
+    body:a{
+      text-decoration: none;
+      color: #007bff;
+    }
+    .boton-turno {
+      display: inline-block;
+      margin: 1rem 0;
+      padding: 0.5rem 1rem;
+      background-color: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .boton-turno:hover {
+      background-color: #218838;
+    }
+    a {
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+      font-weight: bold;
+    }
+
   a(href='/web/turnos/nuevo') Crear nuevo turno
 
   if turnos.length
@@ -11,6 +84,7 @@ block content
           th Fecha
           th Estado
           th Paciente ID
+          th Acciones
       tbody
         each turno in turnos
           tr

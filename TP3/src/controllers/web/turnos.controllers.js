@@ -72,7 +72,7 @@ class TurnosWebController {
 
         try {
             await turnoModel.CancelarTurno(numericoIdTurno);
-            res.redirect('/turnos?mensaje=Turno borrado exitosamente');
+            res.redirect('/web/turnos?mensaje=Turno borrado exitosamente');
         } catch (error) {
             console.error('Error al borrar turno:', error);
             let codigoError = 500;

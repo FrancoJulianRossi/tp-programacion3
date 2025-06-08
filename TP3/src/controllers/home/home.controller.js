@@ -2,7 +2,7 @@
 // controladores
 const home = async (req, res) => {
     res.render('index', { 
-        title: 'Mi aplicación Express',
+        title: 'TP3',
         message: '¡Hola desde el servidor!' ,
         showFeatures: true,
         features: [

@@ -83,26 +83,27 @@ class PacientesModel {
     });
   }
 
-  update(id, paciente) {
-    return new Promise((resolve, reject) => {
-      try {
-        const pacienteEncontrado = this.data.find(p => p.email === paciente.email)
-        if (!pacienteEncontrado) {
-          this.data.push(paciente);
-        } else {
-          throw new Error("el paciente ya existe");
-        }
-        pacienteEncontrado.dni = paciente.dni;
-        pacienteEncontrado.email = paciente.email;
-        pacienteEncontrado.nombre = paciente.nombre;
-        pacienteEncontrado.apellido = paciente.apellido;
-        resolve(pacienteEncontrado);
-      } catch (error) {
-        reject(error);
+update(id, paciente) {
+  return new Promise((resolve, reject) => {
+    try {
+      const pacienteExistente = this.data.find(p => p.id === parseInt(id, 10));
+      if (!pacienteExistente) {
+        return reject(new Error(`Paciente con id ${id} no encontrado`));
       }
-    })
-
-  }
+      const emailYaUsado = this.data.find(p => p.email === paciente.email && p.id !== parseInt(id, 10));
+      if (emailYaUsado) {
+        return reject(new Error("El email ya está en uso por otro paciente"));
+      }
+      pacienteExistente.dni = paciente.dni;
+      pacienteExistente.email = paciente.email;
+      pacienteExistente.nombre = paciente.nombre;
+      pacienteExistente.apellido = paciente.apellido;
+      resolve(pacienteExistente);
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
 
   delete(id) {
     return new Promise((resolve, reject) => {

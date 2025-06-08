@@ -1,6 +1,61 @@
 extends ../index
 
 block content
+  style.
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background-color: rgba(253, 9, 9, 0.95);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #343a40;
+      color: white;
+    }
+
+    form {
+      display: inline;
+    }
+
+    button {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      margin-right: 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #c82333;
+    }
+
+    td a {
+      background-color: #007bff;
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 5px;
+    }
+
+    td a:hover {
+      background-color: #0056b3;
+    }
+    a {
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+      font-weight: bold;
+    }
+    
   a(href='/web/pacientes/crearPaciente') Crear nuevo paciente
 
   if pacientes.length

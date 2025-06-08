@@ -42,7 +42,7 @@ class PacientesWebController {
         try {
             const nuevoPaciente = new Paciente(dni, nombre, apellido, email);
             await pacientesModel.create(nuevoPaciente);
-            res.redirect('/pacientes');
+            res.redirect('/web/pacientes');
         } catch (error) {
             console.error('Error al crear paciente:', error);
             res.status(500).render('error', {
@@ -56,7 +56,7 @@ class PacientesWebController {
 
         try {
             await pacientesModel.delete(id);
-            res.redirect('/pacientes?mensaje=Paciente eliminado');
+            res.redirect('/web/pacientes?mensaje=Paciente eliminado');
         } catch (error) {
             console.error('Error al eliminar paciente:', error);
             res.status(500).render('error', {
@@ -69,7 +69,7 @@ class PacientesWebController {
         const id = req.params.id;
 
         try {
-            const paciente = await pacientesModel.getById(id);
+            const paciente = await pacientesModel.getPacienteById(id);
             if (!paciente) {
                 return res.status(404).render('error', {
                     message: 'Paciente no encontrado'
@@ -98,7 +98,7 @@ async actualizarPaciente(req, res) {
     const { dni, nombre, apellido, email } = req.body;
 
     try {
-        const pacienteActual = await pacientesModel.getById(idNum);
+        const pacienteActual = await pacientesModel.getPacienteById(idNum);
         if (!pacienteActual) {
             return res.status(404).render('error', { message: 'Paciente no encontrado' });
         }
@@ -111,7 +111,7 @@ async actualizarPaciente(req, res) {
             idNum
         );
         await pacientesModel.update(idNum, pacienteActualizado);
-        res.redirect('/pacientes');
+        res.redirect('/web/pacientes');
     } catch (error) {
         console.error('Error al actualizar paciente:', error);
         res.status(500).render('error', {
