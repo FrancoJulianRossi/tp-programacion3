@@ -1,5 +1,5 @@
 const {DataTypes} = require('sequelize');
-const sequelize = require('./../config/db.js');
+const {sequelize} = require('./../config/db.js');
 
 const Turno = sequelize.define('Turno', {
     id: {
@@ -17,4 +17,4 @@ const Turno = sequelize.define('Turno', {
     }
 });
 
-module.exports = Turno;
+module.exports = {Turno};

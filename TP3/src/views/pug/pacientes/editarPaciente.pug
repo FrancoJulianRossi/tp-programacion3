@@ -1,7 +1,7 @@
-extends ../layout
+extends ../index
 
 block content
-  form(action=`/pacientes/actualizar/${paciente.id}`, method='post')
+  form(action=`/web/pacientes/actualizar/${paciente.id}`, method='post')
     p
       label(for='dni') DNI:
       input(type='text', name='dni', required, value=paciente.dni)

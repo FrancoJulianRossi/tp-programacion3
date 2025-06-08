@@ -5,8 +5,8 @@ const Turno = require('../../models/mock/entities/turno.entity.js');
 class TurnosWebController {
     async listarTurnos(req, res) {
         try {
-            const turnos = await turnoModel.list();
-            res.render('turnos/list', { // <-- ya no 'ejs/turnos/list'
+            const turnos = await turnoModel.listarTurnos();
+            res.render('turnos/listarTurnos', {
                 turnos,
                 title: 'Lista de turnos'
             });
@@ -21,7 +21,7 @@ class TurnosWebController {
     async mostrarTurnoNuevo(req, res) {
         try {
             const pacientes = await pacienteModel.list();
-            res.render('turnos/new', { 
+            res.render('turnos/crearTurno', { 
                 title: 'Registrar nuevo turno',
                 pacientes
             });
@@ -37,22 +37,21 @@ class TurnosWebController {
         const {
             fecha,
             pacienteId,
-            motivo,
             estado
         } = req.body;
         const numericoPacienteId = parseInt(pacienteId, 10);
 
-        if (isNaN(numericoPacienteId) || !fecha || !motivo) {
+        if (isNaN(numericoPacienteId) || !fecha) {
             return res.status(400).render('error', {
                 message: 'Faltan datos para crear el turno.'
             });
         }
 
-        const nuevoTurno = new Turno(null, numericoPacienteId, fecha, motivo, estado);
+        const nuevoTurno = new Turno(null, numericoPacienteId, fecha, estado);
 
         try {
-            await turnoModel.create(nuevoTurno);
-            res.redirect('/turnos');
+            await turnoModel.crearTurno(nuevoTurno);
+            res.redirect('/web/turnos');
         } catch (error) {
             console.error('Error al crear el turno:', error);
             res.status(500).render('error', {
@@ -72,7 +71,7 @@ class TurnosWebController {
         }
 
         try {
-            await turnoModel.delete(numericoIdTurno);
+            await turnoModel.CancelarTurno(numericoIdTurno);
             res.redirect('/turnos?mensaje=Turno borrado exitosamente');
         } catch (error) {
             console.error('Error al borrar turno:', error);
@@ -89,6 +88,19 @@ class TurnosWebController {
             });
         }
     }
+    async getTurnosId(req, res) {
+    const pacienteId = parseInt(req.params.pacienteId);
+    try {
+      const turnos = await turnosModel.getTurnoByPacienteId(pacienteId);
+      if(turnos.length === 0) {
+          return res.status(404).json({message: "No se encontraron turnos del paciente: " + pacienteId});
+      }
+      res.status(200).json(turnos);
+    } catch (error) {
+      res.status(500).json({message: "Error al obtener los turnos del paciente",
+      error:error.message});
+    }
+  }
 }
 
 module.exports = new TurnosWebController();

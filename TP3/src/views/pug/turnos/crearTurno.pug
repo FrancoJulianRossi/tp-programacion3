@@ -1,7 +1,7 @@
-extends ../layout
+extends ../index
 
 block content
-  form(action='/turnos/nuevo', method='post')
+  form(action='/web/turnos/nuevo', method='post')
     p
       label(for='fecha') Fecha:
       input(type='datetime-local', name='fecha', required)

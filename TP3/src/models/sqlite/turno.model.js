@@ -1,9 +1,7 @@
-const {
-    Turnos
-} = require('../sqlite/entities/turno.entity.js');
+const {Turno} = require('../sqlite/entities/turno.entity.js');
 
 const getTurnoModel = () => {
-    const turnos = Turnos.findAll();
+    const turnos = Turno.findAll();
     return turnos;
 }
 

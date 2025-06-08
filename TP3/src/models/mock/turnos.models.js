@@ -70,3 +70,4 @@ class TurnosModel {
         });
     }
 }
+module.exports = new TurnosModel();

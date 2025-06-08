@@ -1,7 +1,7 @@
-extends ../layout
+extends ../index
 
 block content
-  a(href='/pacientes/nuevo') Crear nuevo paciente
+  a(href='/web/pacientes/crearPaciente') Crear nuevo paciente
 
   if pacientes.length
     table
@@ -22,8 +22,8 @@ block content
             td= paciente.apellido
             td= paciente.email
             td
-              form(action=`/pacientes/${paciente.id}/eliminar`, method='post', style='display:inline')
+              form(action=`/web/pacientes/${paciente.id}/eliminar`, method='post', style='display:inline')
                 button(type='submit') Eliminar
-              a(href=`/pacientes/${paciente.id}/editar`) Editar
+              a(href=`/web/pacientes/actualizar/${paciente.id}`) Editar
   else
     p No hay pacientes registrados.

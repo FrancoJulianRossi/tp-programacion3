@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title= title
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    style.
+      body { font-family: sans-serif; margin: 2rem;background-color:rgb(255, 255, 255); }
+      table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
+      th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
+      th { background-color:rgb(255, 0, 0); }
+      a, button { margin-right: 0.5rem; }
+  body
+    header
+      h1 Sistema de Turnos y Pacientes
+      nav
+        ul
+          li: a(href='/') Inicio
+          li: a(href='/web/pacientes') Pacientes
+          li: a(href='/web/turnos') Turnos
+    main
+      block content
+    footer
+      p &copy; 2025 - TP3

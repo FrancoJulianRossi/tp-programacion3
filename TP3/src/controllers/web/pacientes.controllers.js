@@ -5,7 +5,7 @@ class PacientesWebController {
     async listarPacientes(req, res) {
         try {
             const pacientes = await pacientesModel.list();
-            res.render('pacientes/list', {
+            res.render('pacientes/listarPacientes', {
                 title: 'Lista de pacientes',
                 pacientes
             });
@@ -19,7 +19,7 @@ class PacientesWebController {
 
     async mostrarFormularioNuevo(req, res) {
         try {
-            res.render('pacientes/new', {
+            res.render('pacientes/crearPaciente', {
                 title: 'Registrar nuevo paciente'
             });
         } catch (error) {
@@ -52,7 +52,7 @@ class PacientesWebController {
     }
 
     async eliminarPaciente(req, res) {
-        const id = req.params.id;
+        const id = req.params.idPaciente;
 
         try {
             await pacientesModel.delete(id);
@@ -88,19 +88,48 @@ class PacientesWebController {
         }
     }
 
-    async actualizarPaciente(req, res) {
-        const id = req.params.id;
-        const { dni, nombre, apellido, email } = req.body;
+async actualizarPaciente(req, res) {
+    const id = req.params.idPaciente;
+    const idNum = parseInt(id, 10);
+    if (isNaN(idNum)) {
+        return res.status(400).render('error', { message: 'ID inválido' });
+    }
 
+    const { dni, nombre, apellido, email } = req.body;
+
+    try {
+        const pacienteActual = await pacientesModel.getById(idNum);
+        if (!pacienteActual) {
+            return res.status(404).render('error', { message: 'Paciente no encontrado' });
+        }
+        const pacienteActualizado = new Paciente(
+            dni,
+            nombre,
+            apellido,
+            email,
+            pacienteActual.password,
+            idNum
+        );
+        await pacientesModel.update(idNum, pacienteActualizado);
+        res.redirect('/pacientes');
+    } catch (error) {
+        console.error('Error al actualizar paciente:', error);
+        res.status(500).render('error', {
+            message: 'Error al actualizar paciente'
+        });
+    }
+}
+    async mostrarFormularioActualizar(req, res) {
+        const id = parseInt(req.params.idPaciente);
         try {
-            const pacienteActualizado = new Paciente(dni, nombre, apellido, email);
-            await pacientesModel.update(id, pacienteActualizado);
-            res.redirect('/pacientes');
-        } catch (error) {
-            console.error('Error al actualizar paciente:', error);
-            res.status(500).render('error', {
-                message: 'Error al actualizar paciente'
+            const paciente = await pacientesModel.getPacienteById(id);
+            res.render('pacientes/editarPaciente', {
+                title: 'Editar paciente',
+                paciente
             });
+        } catch (error) {
+            console.error('Error al cargar el formulario de edición:', error);
+            res.status(500).render('error', { message: 'Error al cargar el formulario de edición' });
         }
     }
 }

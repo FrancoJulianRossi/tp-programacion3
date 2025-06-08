@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const turnosWeb = require('../../controllers/web/turnos.controller.js');
+const turnosWeb = require('../../controllers/web/turnos.controllers.js');
 
 const rutasTurnosWeb = Router();
 rutasTurnosWeb.get('/', turnosWeb.listarTurnos);
